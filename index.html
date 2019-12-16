@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<title>WebAgency, agence web à Paris</title>
+		<meta name="description" content="Agence web à Paris, nous accompagnons nos clients dans la création de site internet : étude, conception, design, développement, référencement SEO et suivi." />
+
+		<!-- Twitter Card data -->
+		<meta name="twitter:card" content="summary">
+		<!-- Twitter Card data -->
+
+		<!-- Open Graph data -->
+		<meta property="og:title" content="WebAgency, agence web à Paris" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://projetwebagency.netlify.com/" />
+		<meta property="og:image" content="https://projetwebagency.netlify.com/images/main-feature.png" />
+		<meta property="og:description" content="Agence web à Paris, nous accompagnons nos clients dans la création de site internet : étude, conception, design, développement, référencement SEO et suivi." />
+		<!-- End Open Graph data -->
+
+		<!-- Leaflet -->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+		<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+		<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+
+		<!-- Fontawesome -->
+		<link href="./fonts/fontawesome/css/all.css" rel="stylesheet" />
+		<!-- Mon fichier CSS -->
+		<link rel="stylesheet" href="./style.css" />
+
+	</head>
+	
+	<body>
+
+		<!-- Header -->
+		<header class="header">
+			<div class="header__container">
+				<div class="logo">
+					<img src="./images/CityCycle_logo.png" alt="logo CityCycle" />
+				</div>
+
+				<input class="menu__input" id="menu_responsive" type="checkbox" name="button" />
+				<label class="menu__label" for="menu_responsive">
+					<span class="bars bar-1"></span>
+					<span class="bars bar-2"></span>
+					<span class="bars bar-3"></span>
+				</label>
+
+				<nav class="menu__nav">
+					<ul class="menu">
+						<li class="menu__item"><a class="menu__link" href="#slider">Découvrir CityCycle</a></li>
+						<li class="menu__item"><a class="menu__link" href="#stations">Carte des stations</a></li>
+						<li class="menu__item"><a class="menu__link" href="#reservation">Ma réservation</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<!-- Section 1 slider -->
+		<section class="custom__section slider" id="slider" data-spy>
+			<div class="slider__container">
+				<div class="slider__slide active">
+					<img class="slide__image" src="./images/slider/01.jpg" alt="" />
+					<div class="slide__text">
+						<p class="slide__text_style">Le service City Cycle</p>
+					</div>
+				</div>
+
+				<div class="slider__slide">
+					<img class="slide__image" src="./images/slider/02.jpg" alt="" />
+					<div class="slide__text">
+						<p class="slide__text_style">Étape 1</p>
+					</div>
+				</div>
+
+				<div class="slider__slide">
+					<img class="slide__image" src="./images/slider/03.jpg" alt="" />
+					<div class="slide__text">
+						<p class="slide__text_style">Étape 2</p>
+					</div>
+				</div>
+
+				<div class="slider__slide">
+					<img class="slide__image" src="./images/slider/04.jpg" alt="" />
+					<div class="slide__text">
+						<p class="slide__text_style">Étape 3</p>
+					</div>
+				</div>
+
+				<div class="slider__slide">
+					<img class="slide__image" src="./images/slider/05.jpg" alt="" />
+					<div class="slide__text">
+						<p class="slide__text_style">Étape 4</p>
+					</div>
+				</div>
+
+				<!-- Boutons précédent, suivant, lecture et pause -->
+				<div class="slider__button_left">
+					<a><i class="fas fa-chevron-left"></i></a>
+				</div>
+				<div class="slider__button_right">
+					<a><i class="fas fa-chevron-right"></i></a>
+				</div>
+				<div class="slider__button_playPause">
+					<button class="slider__button_play">
+						<i class="fas fa-play"></i>
+					</button>
+					<button class="slider__button_pause active">
+						<i class="fas fa-pause"></i>
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 2 Carte des stations -->
+		<section class="custom__section stations" id="stations" data-spy>
+			<div class="stations__title">
+				<h2>CARTE DES STATIONS</h2>
+				<div class="separator">
+					<i class="separator__icon fas fa-biking"></i>
+				</div>
+				<p>
+					Utilisez la carte pour trouver la station la plus proche de vous.
+				</p>
+			</div>
+			<div class="stations__main-content">
+				<div id="stations__map" class="stations__map">
+				</div>
+				<div class="stations__reservation">
+				</div>		
+			</div>
+		</section>
+
+		<!-- Section 3 Ma réservation --> 
+		<section class="custom__section reservation" id="reservation" data-spy>
+			<h2>MA RÉSERVATION</h2>
+			<div class="separator">
+				<i class="separator__icon fas fa-biking"></i>
+			</div>
+			<p class="reservation__text">
+				Aucune réservation en cours
+			</p>
+		</section>
+
+
+
+		 <!-- Ajout de la librairie Javascript open source Leaflet -->
+ 		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+ 		<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+		<!-- Ajout de la librairie JQuery depuis les serveurs de Google -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		
+		<script src="./js/slider.js"></script>
+		<script src="./js/map.js"></script>
+		<script src="./js/main.js"></script>
+	</body>
+</html>
