@@ -1,6 +1,6 @@
 class Slider {
 
-  constructor () {
+  constructor() {
     this.sliderContainer = $('.slider__container')
     this.sliderSlide = $('.slider__slide')
     this.index = ""

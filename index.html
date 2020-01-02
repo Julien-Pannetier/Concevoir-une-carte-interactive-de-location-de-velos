@@ -128,8 +128,34 @@
 			<div class="stations__main-content">
 				<div id="stations__map" class="stations__map">
 				</div>
+
 				<div class="stations__reservation">
-				</div>		
+					<h3>Détails de la station</h3>
+					<p class="stations__name">
+						Nom :
+					</p>
+					<p class="stations__address">
+						Adresse :
+					</p>
+					<p class="stations__status">
+						Etat :
+					</p>
+					<p class="stations__available_bike_stands">
+						Place(s) disponible(s) :
+					</p>
+					<p class="stations__available_bikes">
+						Vélo(s) disponible(s) :
+					</p>
+					<form>
+						<p>
+							<input class="input" type="text" name="nom" placeholder="Nom" required />
+							<input class="input" type="text" name="prenom" placeholder="Prénom" required />
+							<input class="button" type="submit" value="Réserver" />
+						</p>
+					</form>
+				</div>
+				<canvas id="stations__canvas">
+				</canvas>
 			</div>
 		</section>
 
@@ -142,6 +168,8 @@
 			<p class="reservation__text">
 				Aucune réservation en cours
 			</p>
+			<p class="reservation__timer"></p>
+			<button class="reservation__cancel button">Annuler</button>
 		</section>
 
 
@@ -155,6 +183,7 @@
 		
 		<script src="./js/slider.js"></script>
 		<script src="./js/map.js"></script>
+		<script src="./js/canvas.js"></script>
 		<script src="./js/main.js"></script>
 	</body>
 </html>
