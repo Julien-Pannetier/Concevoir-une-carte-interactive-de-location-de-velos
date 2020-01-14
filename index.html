@@ -126,25 +126,25 @@
 				</p>
 			</div>
 			<div class="stations__main-content">
-				<div id="stations__map" class="stations__map">
+				<div id="stations__map">
 				</div>
 
-				<div class="stations__reservation">
+				<div id="stations__reservation">
 					<h3>Détails de la station</h3>
-					<p class="stations__name">
-						Nom :
+					<p>
+						Nom de la station : <span id="stations__name"></span>
 					</p>
-					<p class="stations__address">
-						Adresse :
+					<p>
+						Adresse : <span id="stations__address"></span>
 					</p>
-					<p class="stations__status">
-						Etat :
+					<p>
+						Etat : <span id="stations__status"></span>
 					</p>
-					<p class="stations__available_bike_stands">
-						Place(s) disponible(s) :
+					<p>
+						Vélo(s) disponible(s) : <span id="stations__available_bikes"></span>
 					</p>
-					<p class="stations__available_bikes">
-						Vélo(s) disponible(s) :
+					<p>
+						Place(s) disponible(s) : <span id="stations__available_bike_stands"></span>
 					</p>
 					<form>
 						<p>
@@ -183,6 +183,7 @@
 		
 		<script src="./js/slider.js"></script>
 		<script src="./js/map.js"></script>
+		<script src="./js/station.js"></script>
 		<script src="./js/canvas.js"></script>
 		<script src="./js/main.js"></script>
 	</body>
