@@ -125,11 +125,11 @@
 					Utilisez la carte pour trouver la station la plus proche de vous.
 				</p>
 			</div>
-			<div class="stations__main-content">
-				<div id="stations__map">
+			<div class="stations__mainContent">
+				<div id="stations__map" class="stations__map">
 				</div>
 
-				<div id="stations__reservation">
+				<div id="stations__reservation" class="stations__reservation">
 					<h3>Détails de la station</h3>
 					<p>
 						Nom de la station : <span id="stations__name"></span>
@@ -146,17 +146,31 @@
 					<p>
 						Place(s) disponible(s) : <span id="stations__available_bike_stands"></span>
 					</p>
-					<form>
+
+					<p id="stations__comment"></p>
+
+					<form id="stations__form">
 						<p>
-							<input class="input" type="text" name="nom" placeholder="Nom" required />
-							<input class="input" type="text" name="prenom" placeholder="Prénom" required />
-							<input class="button" type="submit" value="Réserver" />
+							<input id="user__lastName" class="input" type="text" name="nom" placeholder="Nom" required />
+							<input id="user__firstName" class="input" type="text" name="prenom" placeholder="Prénom" required />
+							<button class="reservation__button button">
+								Réserver
+							</button>
 						</p>
 					</form>
 				</div>
-				<canvas id="stations__canvas">
-				</canvas>
 			</div>
+
+				<canvas id="stations__canvas">
+					<p>Votre navigateur ne semble pas prendre en charge cette fonctionnalité.</p>
+				</canvas>
+				<button class="canvas__button_validate button">
+					Valider
+				</button>
+				<button class="canvas__button_clear button">
+					Effacer
+				</button>
+
 		</section>
 
 		<!-- Section 3 Ma réservation --> 
@@ -169,7 +183,9 @@
 				Aucune réservation en cours
 			</p>
 			<p class="reservation__timer"></p>
-			<button class="reservation__cancel button">Annuler</button>
+			<button class="reservation__button_cancel button">
+				Annuler la réservation
+			</button>
 		</section>
 
 

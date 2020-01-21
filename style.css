@@ -338,8 +338,32 @@ Carte des stations
 	margin: auto;
 }
 
-#stations__map { 
+.stations__mainContent {
+	position: absolute;
+	width: 100%;
 	height: 500px;
+}
+
+.stations__map {
+	position: relative;
+	width: 100%;
+	height: 500px;
+}
+
+.stations__reservation
+{
+	position: absolute;
+	display: none;
+	top: 10%;
+	left: 60%;
+	width: 25%;
+	background-color: rgba(242, 246, 248);
+	padding: 10px 15px;
+	z-index: 1000;
+}
+
+.stations__reservation.active {
+	display: block;
 }
 
 #stations__canvas {

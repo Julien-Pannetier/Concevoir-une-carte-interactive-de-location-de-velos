@@ -33,20 +33,8 @@ class Carte {
     this.map.addLayer(this.markerCluster);  
   }
 
-// ------------------------------------------
-
-  infoStation(name, address, status, bikes, stands) {
-    this.marker.on('click', () => {
-      const nom = document.getElementById('stations__name');
-      nom.innerHTML = name;
-      const adresse = document.getElementById('stations__address');
-      adresse.innerHTML = address;
-      const statut = document.getElementById('stations__status');
-      statut.innerHTML = status;
-      const velos = document.getElementById('stations__available_bikes');
-      velos.innerHTML = bikes;
-      const places = document.getElementById('stations__available_bike_stands');
-      places.innerHTML = stands;
-    })
+  // Création d'un événement personnalisé
+  addCustomEvent(object, type, callback) {
+    object.on(type, callback);
   }
 }
