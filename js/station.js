@@ -1,9 +1,10 @@
 class Station {
 
-  constructor(contractName, apiKey, carte) {
+  constructor(contractName, apiKey, carte, reservation) {
     this.contractName = contractName; // Nom du contrat JCDecaux
     this.apiKey = apiKey; // Clé de l'API
     this.carte = carte; // Objet carte
+    this.reservation = reservation; // Objet réservation
 
     this.getStations();
   }
@@ -48,5 +49,14 @@ class Station {
     infoStation.status.innerHTML = station.status;
     infoStation.bikes.innerHTML = station.available_bikes;
     infoStation.stands.innerHTML = station.available_bike_stands;
+    // Affichage d'un message si la station est fermée
+    if (station.status === "CLOSED") {
+      document.getElementById("stations__comment").innerHTML = "Cette station est actuellement fermée.";
+    } else if (station.status === "OPEN" && station.available_bikes === 0) {
+      document.getElementById("stations__comment").innerHTML = "Il n'y a actuellement plus de vélo disponible à cette station.";
+    } else if (station.status === "OPEN" && station.available_bikes > 0) {
+      document.getElementById("stations__comment").innerHTML = "Veuillez renseigner votre Nom et Prénom";
+      $('#stations__form').show();
+    }
   }
 }

@@ -121,7 +121,7 @@
 				<div class="separator">
 					<i class="separator__icon fas fa-biking"></i>
 				</div>
-				<p>
+				<p class="stations__subtitle">
 					Utilisez la carte pour trouver la station la plus proche de vous.
 				</p>
 			</div>
@@ -130,6 +130,9 @@
 				</div>
 
 				<div id="stations__reservation" class="stations__reservation">
+					<button class="stations__button_close">
+						<i class="fas fa-times"></i>
+					</button>
 					<h3>Détails de la station</h3>
 					<p>
 						Nom de la station : <span id="stations__name"></span>
@@ -149,7 +152,7 @@
 
 					<p id="stations__comment"></p>
 
-					<form id="stations__form">
+					<form id="stations__form" hidden>
 						<p>
 							<input id="user__lastName" class="input" type="text" name="nom" placeholder="Nom" required />
 							<input id="user__firstName" class="input" type="text" name="prenom" placeholder="Prénom" required />
@@ -158,18 +161,20 @@
 							</button>
 						</p>
 					</form>
+
+					<canvas id="stations__canvas" hidden>
+						<p>Votre navigateur ne semble pas prendre en charge cette fonctionnalité.</p>
+					</canvas>
+					<button class="canvas__button_validate button" hidden>
+						Valider
+					</button>
+					<button class="canvas__button_clear button" hidden>
+						Effacer
+					</button>
 				</div>
 			</div>
 
-				<canvas id="stations__canvas">
-					<p>Votre navigateur ne semble pas prendre en charge cette fonctionnalité.</p>
-				</canvas>
-				<button class="canvas__button_validate button">
-					Valider
-				</button>
-				<button class="canvas__button_clear button">
-					Effacer
-				</button>
+
 
 		</section>
 
@@ -179,13 +184,14 @@
 			<div class="separator">
 				<i class="separator__icon fas fa-biking"></i>
 			</div>
-			<p class="reservation__text">
-				Aucune réservation en cours
-			</p>
-			<p class="reservation__timer"></p>
-			<button class="reservation__button_cancel button">
-				Annuler la réservation
-			</button>
+			<div class="reservation__mainContent">
+				<p id="timer" class="reservation__timer">
+					Aucune réservation en cours.
+				</p>
+				<button class="reservation__button_cancel button" hidden>
+					Annuler la réservation
+				</button>
+			</div>
 		</section>
 
 
@@ -201,6 +207,7 @@
 		<script src="./js/map.js"></script>
 		<script src="./js/station.js"></script>
 		<script src="./js/canvas.js"></script>
+		<script src="./js/reservation.js"></script>
 		<script src="./js/main.js"></script>
 	</body>
 </html>

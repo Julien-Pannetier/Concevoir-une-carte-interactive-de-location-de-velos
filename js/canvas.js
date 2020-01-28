@@ -10,6 +10,7 @@ class Canvas {
 		this.ctx.lineCap = lineCap; // Définition du type d'extrémités du trait
 		this.ctx.lineJoin = lineJoin; // Définition du type de jointure entre deux segments
 		this.painting = false;
+		this.signature = false;
 
 		this.canvas.addEventListener('mousedown', this.startPosition.bind(this));
 		this.canvas.addEventListener('mouseup', this.finishedPosition.bind(this));
@@ -37,6 +38,7 @@ class Canvas {
 		if (!this.painting) return;
 		this.ctx.lineTo(e.offsetX, e.offsetY);
 		this.ctx.stroke();
+		this.signature = true;
 	}
 
 	save() {
@@ -45,5 +47,6 @@ class Canvas {
 
 	clear() {
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		this.signature = false;
 	}
 }

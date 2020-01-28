@@ -323,12 +323,12 @@ Slideshow
 	display: block;
 }
 
-
 /* ==========================================================================
 Carte des stations
 ========================================================================== */
 .stations {
 	width: 90%;
+	height: 800px;
 	padding-bottom: 50px;
 }
 
@@ -338,27 +338,33 @@ Carte des stations
 	margin: auto;
 }
 
+.stations__subtitle {
+	margin: 10px 0px 50px 0px;
+}
+
 .stations__mainContent {
-	position: absolute;
+	position: relative;
 	width: 100%;
-	height: 500px;
+	height: auto;
 }
 
 .stations__map {
-	position: relative;
+	position: absolute;
 	width: 100%;
 	height: 500px;
 }
 
-.stations__reservation
-{
+.stations__reservation {
 	position: absolute;
 	display: none;
-	top: 10%;
-	left: 60%;
 	width: 25%;
-	background-color: rgba(242, 246, 248);
-	padding: 10px 15px;
+	height: 480px;
+	top: 10px;
+	right: 10px;
+	background-color: white;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+	transition: 0.3s ease-in;
 	z-index: 1000;
 }
 
@@ -376,10 +382,9 @@ Ma réservation
 	height: 500px;
 	text-align: center;
 	background-color: #F5F5F5;
-	padding-bottom: 50px;
 }
 
-.reservation__text {
+.reservation__timer {
 	margin: 10px 0px 50px 0px;
 }
 
