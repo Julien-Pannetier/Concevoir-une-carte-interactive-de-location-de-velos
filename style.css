@@ -368,11 +368,15 @@ Carte des stations
 	z-index: 1000;
 }
 
-.stations__reservation.active {
-	display: block;
+#stations__form {
+	display: none;
 }
 
 #stations__canvas {
+	display: none;
+}
+
+#canvas {
 	border: 2px solid black;
 }
 /* ==========================================================================
@@ -386,6 +390,10 @@ Ma réservation
 
 .reservation__timer {
 	margin: 10px 0px 50px 0px;
+}
+
+.reservation__button_cancel {
+	display: none;
 }
 
 /* ==========================================================================

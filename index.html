@@ -59,7 +59,7 @@
 		</header>
 
 		<!-- Section 1 slider -->
-		<section class="custom__section slider" id="slider" data-spy>
+		<section class="custom__section slider scrollspy" id="slider">
 			<div class="slider__container">
 				<div class="slider__slide active">
 					<img class="slide__image" src="./images/slider/01.jpg" alt="" />
@@ -115,7 +115,7 @@
 		</section>
 
 		<!-- Section 2 Carte des stations -->
-		<section class="custom__section stations" id="stations" data-spy>
+		<section class="custom__section stations scrollspy" id="stations">
 			<div class="stations__title">
 				<h2>CARTE DES STATIONS</h2>
 				<div class="separator">
@@ -130,7 +130,7 @@
 				</div>
 
 				<div id="stations__reservation" class="stations__reservation">
-					<button class="stations__button_close">
+					<button class="stations__button_close button">
 						<i class="fas fa-times"></i>
 					</button>
 					<h3>Détails de la station</h3>
@@ -152,34 +152,32 @@
 
 					<p id="stations__comment"></p>
 
-					<form id="stations__form" hidden>
+					<form id="stations__form" class="stations__form">
 						<p>
 							<input id="user__lastName" class="input" type="text" name="nom" placeholder="Nom" required />
 							<input id="user__firstName" class="input" type="text" name="prenom" placeholder="Prénom" required />
-							<button class="reservation__button button">
+							<button type="button" class="reservation__button button" >
 								Réserver
 							</button>
 						</p>
 					</form>
-
-					<canvas id="stations__canvas" hidden>
-						<p>Votre navigateur ne semble pas prendre en charge cette fonctionnalité.</p>
-					</canvas>
-					<button class="canvas__button_validate button" hidden>
-						Valider
-					</button>
-					<button class="canvas__button_clear button" hidden>
-						Effacer
-					</button>
+					<div id="stations__canvas" class="stations__canvas">
+						<canvas id="canvas">
+							<p>Votre navigateur ne semble pas prendre en charge cette fonctionnalité.</p>
+						</canvas>
+						<button type="button" class="canvas__button_validate button">
+							Valider
+						</button>
+						<button type="button" class="canvas__button_clear button">
+							Effacer
+						</button>
+					</div>
 				</div>
 			</div>
-
-
-
 		</section>
 
 		<!-- Section 3 Ma réservation --> 
-		<section class="custom__section reservation" id="reservation" data-spy>
+		<section class="custom__section reservation scrollspy" id="reservation">
 			<h2>MA RÉSERVATION</h2>
 			<div class="separator">
 				<i class="separator__icon fas fa-biking"></i>
@@ -188,7 +186,7 @@
 				<p id="timer" class="reservation__timer">
 					Aucune réservation en cours.
 				</p>
-				<button class="reservation__button_cancel button" hidden>
+				<button type="button" class="reservation__button_cancel button">
 					Annuler la réservation
 				</button>
 			</div>
@@ -203,11 +201,12 @@
 		<!-- Ajout de la librairie JQuery depuis les serveurs de Google -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		
+		<script src="./js/scrollspy.js"></script>
 		<script src="./js/slider.js"></script>
 		<script src="./js/map.js"></script>
-		<script src="./js/station.js"></script>
 		<script src="./js/canvas.js"></script>
 		<script src="./js/reservation.js"></script>
+		<script src="./js/station.js"></script>
 		<script src="./js/main.js"></script>
 	</body>
 </html>

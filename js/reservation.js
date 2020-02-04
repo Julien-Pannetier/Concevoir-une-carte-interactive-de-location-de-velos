@@ -1,120 +1,109 @@
 class Reservation {
 
   constructor() {
-    this.canvas = new Canvas(document.querySelector("#stations__canvas"), document.querySelector("#stations__canvas").getContext('2d'), 200, 200, "black", 5, "round", "round");
+    this.canvas = new Canvas(document.querySelector("#canvas"), document.querySelector("#canvas").getContext('2d'), 200, 200, "black", 5, "round", "round");
 
     this.userLastName = document.getElementById("user__lastName");
     this.userFirstName = document.getElementById("user__firstName");
     this.stationName = document.getElementById("stations__name");
     this.stationAddress = document.getElementById("stations__address");
-
-    this.counter = 5;
     this.timerElt = document.getElementById('timer');
 
-    $('.reservation__button').click(this.save.bind(this))
-    $('.canvas__button_validate').click(this.setReservation.bind(this))
+    $('.reservation__button').click(this.startReservation.bind(this));
+    $('.stations__button_close').click(this.closeStationReservationBox.bind(this));
+    $('.canvas__button_validate').click(this.completeReservation.bind(this));
+    $('.reservation__button_cancel').click(this.cancelReservation.bind(this));
+
+    this.checkReservation();
   }
 
-  checkInformation() {
-    // Vérification de l'existence des données nom et prénom dans le local storage
+  checkReservation() {
+    // Récupération du nom et prénom de l'utilisateur dans le local storage
     this.userLastName.value = localStorage.getItem('userLastName');
     this.userFirstName.value = localStorage.getItem('userFirstName');
     // Vérification de l'existence d'une réservation en cours
+    if (JSON.parse(sessionStorage.getItem('date')) > 0 ) {
+      $('.reservation__button_cancel').show();
+      document.getElementById("stations__comment").innerHTML = "Vous avez actuellement une réservation en cours.";
+      $('.stations__form').hide();
+    };
   }
 
- save() {
+  startReservation() {
     if (!!this.userLastName.value && !!this.userFirstName.value) {
-   // Enregistrement du Nom et Prénom en local 
+      // Enregistrement du Nom et Prénom en local 
       localStorage.setItem('userLastName', this.userLastName.value);
       localStorage.setItem('userFirstName', this.userFirstName.value);
       // Affichage du canvas
       document.getElementById("stations__comment").innerHTML = "Veuillez apposer votre signature.";
-      $('#stations__form').hide();
-      $('#stations__canvas').show();
-      $('.canvas__button_validate').show();
-      $('.canvas__button_clear').show();
+      $('.stations__form').hide();
+      $('.stations__canvas').show();
     } else {
-      alert("Veuillez compléter les champs Nom et Prénom.")
+      alert("Veuillez compléter les champs nom et prénom.")
     }
   }
 
-  setReservation() {
+  closeStationReservationBox() {
+    $('.stations__reservation').hide();
+    $('.stations__canvas').hide();
+    this.canvas.clear();
+  }
+
+  completeReservation() {
     if (this.canvas.signature === true) {
-      $('.stations__reservation').removeClass('active')
       sessionStorage.setItem('date', new Date().getTime());
       sessionStorage.setItem('stationName', this.stationName.innerHTML);
       sessionStorage.setItem('stationAddress', this.stationAddress.innerHTML);
-      $('.reservation__button_cancel').show();
-      this.setDate();
+      this.closeStationReservationBox();
+      this.setTimer();
     } else {
       alert("Veuillez apposer votre signature.")
     }
   }
 
-  setDate(){
+  setTimer() {
     const self = this;
+    $('.reservation__button_cancel').show();
+    document.getElementById("stations__comment").innerHTML = "Vous avez actuellement une réservation en cours.";
+    $('.stations__form').hide();
     this.timer = setInterval(function() {
-      self.timerElt.innerHTML = self.counter;
-      self.counter--;
-      if (self.counter === 0) {
-        setTimeout(function(){
-          self.timerElt.innerHTML = "Aucune réservation en cours";
+      // Récupération de la date actuelle
+      this.now = new Date().getTime();
+      // Récupération de la date de la réservation dans session storage   
+      this.reservationDate = JSON.parse(sessionStorage.getItem('date'));
+      // Comparaison des deux dates et création du décompte
+      this.secondes = ((this.reservationDate + 1200000) - this.now)/1000;
+      this.minutes = Math.floor(this.secondes / 60);
+      this.secondes -= this.minutes * 60;
+      this.secondes = Math.floor(this.secondes);
+      // Affichage du décompte
+      this.lastName = localStorage.getItem('userLastName');
+      this.firstName = localStorage.getItem('userFirstName');
+      this.station = sessionStorage.getItem('stationName');
+      this.address = sessionStorage.getItem('stationAddress');
+      self.timerElt.innerHTML = ' '+this.lastName+' '+this.firstName+', un vélo vous est réservé à la station '+this.station+' située '+this.address+ '.<br>Cette réservation expire dans '+this.minutes+' minute'+(this.minutes>1?'s':'')+' et '+this.secondes+' seconde'+(this.secondes>1?'s':'');
+      if (this.minutes === 0 && this.secondes === 0) {
+        setTimeout(function() {
+          self.timerElt.innerHTML = "Votre réservation vient d'expirer.";
+          $('.reservation__button_cancel').hide();
           clearInterval(self.timer);
+          sessionStorage.clear();
+          setTimeout(function() {
+            self.timerElt.innerHTML = "Aucune réservation en cours.";
+          }, 5000);
         }, 1000);
       };
     }, 1000);
   }
 
-
-/*
-  setDate() {
-    // Récupération de la date actuelle
-    this.now = new Date().getTime();
-    // Récupération de la date de la réservation dans le session storage   
-    this.reservationDate = sessionStorage.getItem('date') + 10000;
-    // Comparaison des deux dates et création du décompte
-    this.seconde = (this.reservationDate - this.now)/1000;
-    this.minute = Math.floor(this.seconde / 60);
-    this.seconde -= this.minute * 60;
-    this.seconde = Math.floor(this.seconde);
-    // Affichage du décompte
-    this.timerElt.innerHTML = 'Votre réservation expire dans '+this.seconde
-    //'Votre réservation expire dans '+this.minute+' minute'+(this.minute>1?'s':'')+' et '+this.seconde' seconde'+(this.seconde>1?'s':'');
-    setTimeout(this.setDate(), 1000);
+  cancelReservation() {
+    const self = this;
+    this.timerElt.innerHTML = "Vous réservation a bien été annulée.";    
+    $('.reservation__button_cancel').hide();
+    clearInterval(this.timer);
+    sessionStorage.clear();
+    setTimeout(function() {
+          self.timerElt.innerHTML = "Aucune réservation en cours.";
+    }, 5000);
   }
-*/
-
-
-    // Au clic sur le bouton "Réserver", faire apparaître le canvas
-
-
-
-    //Stockage des informations de la station dans un session storage
-
-
-
-
-    // Validation de la réservation
-
-    // Réservation valable pendant 20min
-
-
-
-
-
-  // Vérification du stockage en local du nom et prénom de l'utilisateur
-
-
-  // Vérification si une réservation est en cours
-
-
-
-
-
-
-  // Suppression des informations contenues dans le local storage
-  clearLocalStorage () {
-    localStorage.clear();
-  }
-
 }

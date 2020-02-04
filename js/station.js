@@ -18,11 +18,11 @@ class Station {
         let iconsColor;
         if (station.status === "CLOSED") {
           iconsColor = "red";
-          } else if (station.status === "OPEN" && station.available_bikes === 0) {
+        } else if (station.status === "OPEN" && station.available_bikes === 0) {
           iconsColor = "orange";
-          } else if (station.status === "OPEN" && station.available_bikes > 0) {
+        } else if (station.status === "OPEN" && station.available_bikes > 0) {
           iconsColor = "green";
-          }
+        }
         let icons = L.icon({
           iconUrl: 'images/marker__icon_' + iconsColor + '.png'
         });
@@ -43,7 +43,8 @@ class Station {
         bikes: document.getElementById('stations__available_bikes'),
         stands: document.getElementById('stations__available_bike_stands')
     };
-    $('.stations__reservation').addClass('active');
+    this.reservation.closeStationReservationBox();
+    $('.stations__reservation').show();
     infoStation.name.innerHTML = station.name;
     infoStation.address.innerHTML = station.address;
     infoStation.status.innerHTML = station.status;
@@ -52,11 +53,14 @@ class Station {
     // Affichage d'un message si la station est fermée
     if (station.status === "CLOSED") {
       document.getElementById("stations__comment").innerHTML = "Cette station est actuellement fermée.";
+      $('.stations__form').hide();
     } else if (station.status === "OPEN" && station.available_bikes === 0) {
       document.getElementById("stations__comment").innerHTML = "Il n'y a actuellement plus de vélo disponible à cette station.";
+      $('.stations__form').hide();
     } else if (station.status === "OPEN" && station.available_bikes > 0) {
-      document.getElementById("stations__comment").innerHTML = "Veuillez renseigner votre Nom et Prénom";
-      $('#stations__form').show();
+      this.reservation.checkReservation();
+      document.getElementById("stations__comment").innerHTML = "Veuillez compléter les champs nom et prénom.";
+      $('.stations__form').show();
     }
   }
 }
