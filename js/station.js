@@ -52,14 +52,13 @@ class Station {
     infoStation.stands.innerHTML = station.available_bike_stands;
     // Affichage d'un message si la station est fermée
     if (station.status === "CLOSED") {
-      document.getElementById("stations__comment").innerHTML = "Cette station est actuellement fermée.";
+      document.getElementById("stations__reservation_comment").innerHTML = "Cette station est actuellement fermée.";
       $('.stations__form').hide();
     } else if (station.status === "OPEN" && station.available_bikes === 0) {
-      document.getElementById("stations__comment").innerHTML = "Il n'y a actuellement plus de vélo disponible à cette station.";
+      document.getElementById("stations__reservation_comment").innerHTML = "Il n'y a plus de vélo disponible à cette station.";
       $('.stations__form').hide();
     } else if (station.status === "OPEN" && station.available_bikes > 0) {
-      this.reservation.checkReservation();
-      document.getElementById("stations__comment").innerHTML = "Veuillez compléter les champs nom et prénom.";
+      document.getElementById("stations__reservation_comment").innerHTML = "Veuillez compléter les champs Nom et Prénom :";
       $('.stations__form').show();
     }
   }

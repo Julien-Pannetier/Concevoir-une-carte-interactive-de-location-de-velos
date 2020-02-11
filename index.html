@@ -130,34 +130,34 @@
 				</div>
 
 				<div id="stations__reservation" class="stations__reservation">
-					<button class="stations__button_close button">
+					<button class="stations__button_close">
 						<i class="fas fa-times"></i>
 					</button>
-					<h3>Détails de la station</h3>
-					<p>
-						Nom de la station : <span id="stations__name"></span>
+					<h3 class="stations__reservation_title">Détails de la station</h3>
+					<p class="stations__reservation_text">
+						Nom : <span id="stations__name"></span>
 					</p>
-					<p>
+					<p class="stations__reservation_text">
 						Adresse : <span id="stations__address"></span>
 					</p>
-					<p>
+					<p class="stations__reservation_text">
 						Etat : <span id="stations__status"></span>
 					</p>
-					<p>
+					<p class="stations__reservation_text">
 						Vélo(s) disponible(s) : <span id="stations__available_bikes"></span>
 					</p>
-					<p>
+					<p class="stations__reservation_text">
 						Place(s) disponible(s) : <span id="stations__available_bike_stands"></span>
 					</p>
 
-					<p id="stations__comment"></p>
+					<p id="stations__reservation_comment" class="stations__reservation_comment"></p>
 
 					<form id="stations__form" class="stations__form">
 						<p>
 							<input id="user__lastName" class="input" type="text" name="nom" placeholder="Nom" required />
 							<input id="user__firstName" class="input" type="text" name="prenom" placeholder="Prénom" required />
 							<button type="button" class="reservation__button button" >
-								Réserver
+								<i class="fas fa-check"></i> Réserver
 							</button>
 						</p>
 					</form>
@@ -166,10 +166,10 @@
 							<p>Votre navigateur ne semble pas prendre en charge cette fonctionnalité.</p>
 						</canvas>
 						<button type="button" class="canvas__button_validate button">
-							Valider
+							<i class="fas fa-check"></i> Valider
 						</button>
 						<button type="button" class="canvas__button_clear button">
-							Effacer
+							<i class="fas fa-trash-alt"></i> Effacer
 						</button>
 					</div>
 				</div>
@@ -187,7 +187,7 @@
 					Aucune réservation en cours.
 				</p>
 				<button type="button" class="reservation__button_cancel button">
-					Annuler la réservation
+					<i class="fas fa-trash-alt"></i> Annuler la réservation 
 				</button>
 			</div>
 		</section>

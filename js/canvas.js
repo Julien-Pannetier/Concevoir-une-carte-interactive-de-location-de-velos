@@ -15,18 +15,19 @@ class Canvas {
 		this.canvas.addEventListener('mousedown', this.startPosition.bind(this));
 		this.canvas.addEventListener('mouseup', this.finishedPosition.bind(this));
 		this.canvas.addEventListener('mousemove', this.draw.bind(this));
-	
-		this.canvas.addEventListener('touchstart', this.startPosition.bind(this));
-		this.canvas.addEventListener('touchend', this.finishedPosition.bind(this));
-		this.canvas.addEventListener('touchmove', this.draw.bind(this));
+		this.canvas.addEventListener("mouseout", this.finishedPosition.bind(this));
+		
+		this.canvas.addEventListener('touchstart', this.handleStart.bind(this));
+		this.canvas.addEventListener('touchend', this.handleEnd.bind(this));
+		this.canvas.addEventListener('touchmove', this.handleMove.bind(this));
+		this.canvas.addEventListener("touchleave", this.handleEnd.bind(this));
 
-		$('.canvas__button_validate').click(this.save.bind(this));
 		$('.canvas__button_clear').click(this.clear.bind(this));
 	}
 
 	startPosition(e) {
-		this.painting = true;
-		this.ctx.beginPath();
+		this.painting = true;		
+		this.ctx.beginPath();		
 		this.draw(e);
 	}
 
@@ -41,10 +42,33 @@ class Canvas {
 		this.signature = true;
 	}
 
-	save() {
-		
-	}	
+	// Gestion des événements tactiles / Touch events
+	handleStart(e) {
+		e.preventDefault();
+		this.painting = true;		
+		this.ctx.beginPath();		
+		this.handleMove(e);
+	}
 
+	handleEnd(e) {
+		e.preventDefault();
+		this.painting = false;
+	}
+
+	handleMove(e) {
+		e.preventDefault();
+		if (!this.painting) return;
+		let touch = e.touches;
+		console.log("touch");
+		console.log("ctx.MoveTo(" + touch[0].clientX + ", " + touch[0].clientY + ");");
+		console.log("ctx.lineTo(" + touch[0].clientX + ", " + touch[0].clientY + ");");
+		//this.ctx.moveTo(touch[0].clientX,touch[0].clientY);
+		this.ctx.lineTo(touch[0].clientX,touch[0].clientY);
+		this.ctx.stroke();
+		this.signature = true;
+	}
+
+	// Efface le canvas
 	clear() {
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		this.signature = false;

@@ -4,27 +4,24 @@
 		this.ratio = ratio;
 		this.spies = spies;
 		this.observer = null;
-
-		if (this.spies.length > 0) {
-			this.scrollspy(this.spies);
-			windows.addEventListener('resize', function() {  // fonctionne même si l'utilisateur modifie la taille de la fenêtre
-				this.scrollspy(this.spies);
-			})
-		}
 	}
 
 	callback(entries) {
 		entries.forEach(function (entry) {
 			if (entry.isIntersecting) {
-				const id = entry.target.getAttribute('id'); // récupère l'id
-				const anchor = document.querySelector(`a[href="#${id}"]`);  // recherche le lien qui pointe vers cet id
+				// récupère l'id
+				const id = entry.target.getAttribute('id');
+				// recherche le lien qui pointe vers cet id
+				const anchor = document.querySelector(`a[href="#${id}"]`);
 				if (anchor === null) {
 					return null;
 				}
-				anchor.parentElement.parentElement // retire la classe active de l'élément précédent
+				// retire la classe active de l'élément précédent
+				anchor.parentElement.parentElement
 					.querySelectorAll('.active')
 					.forEach(node => node.classList.remove('active'))
-				anchor.classList.add('active');  // ajoute la classe active à l'élément visible à l'écran
+				// ajoute la classe active à l'élément visible à l'écran	
+				anchor.classList.add('active');
 			}
 		})
 	}
@@ -35,13 +32,21 @@
 		}
 		const y = Math.round(window.innerHeight * this.ratio);
 		this.observer = new IntersectionObserver(this.callback(entries), {
-		  rootMargin: `-${window.innerHeight - y - 1}px 0px -${y}px 0px`  // crée une zone d'intersection de 1px
+			// crée une zone d'intersection de 1px
+			rootMargin: `-${window.innerHeight - y - 1}px 0px -${y}px 0px`;
 		})
 		this.spies.forEach(element => this.observer.observe(element));
 	}
 }
-*/
-/*class Scrollspy {
+
+		if (this.spies.length > 0) {
+			this.scrollspy(this.spies);
+			window.addEventListener('resize', function() {  // fonctionne même si l'utilisateur modifie la taille de la fenêtre
+				this.scrollspy(this.spies);
+			})
+		}
+
+class Scrollspy {
 	
 
   const ratio = .6;
