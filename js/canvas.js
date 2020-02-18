@@ -13,59 +13,45 @@ class Canvas {
 		this.signature = false;
 
 		this.canvas.addEventListener('mousedown', this.startPosition.bind(this));
-		this.canvas.addEventListener('mouseup', this.finishedPosition.bind(this));
-		this.canvas.addEventListener('mousemove', this.draw.bind(this));
-		this.canvas.addEventListener("mouseout", this.finishedPosition.bind(this));
+		this.canvas.addEventListener('mouseup', this.endPosition.bind(this));
+		this.canvas.addEventListener('mousemove', this.mouseMove.bind(this));
+		this.canvas.addEventListener("mouseout", this.endPosition.bind(this))
 		
-		this.canvas.addEventListener('touchstart', this.handleStart.bind(this));
-		this.canvas.addEventListener('touchend', this.handleEnd.bind(this));
-		this.canvas.addEventListener('touchmove', this.handleMove.bind(this));
-		this.canvas.addEventListener("touchleave", this.handleEnd.bind(this));
+		// Gestion des événements tactiles / Touch events
+		this.canvas.addEventListener('touchstart', this.startPosition.bind(this));
+		this.canvas.addEventListener('touchend', this.endPosition.bind(this));
+		this.canvas.addEventListener('touchmove', this.touchMove.bind(this));
 
 		$('.canvas__button_clear').click(this.clear.bind(this));
 	}
 
 	startPosition(e) {
+		e.preventDefault();		
 		this.painting = true;		
 		this.ctx.beginPath();		
-		this.draw(e);
+		this.mouseMove(e);
 	}
 
-	finishedPosition(e) {
-		this.painting = false;
-	}
-
-	draw(e) {
-		if (!this.painting) return;
-		this.ctx.lineTo(e.offsetX, e.offsetY);
-		this.ctx.stroke();
-		this.signature = true;
-	}
-
-	// Gestion des événements tactiles / Touch events
-	handleStart(e) {
-		e.preventDefault();
-		this.painting = true;		
-		this.ctx.beginPath();		
-		this.handleMove(e);
-	}
-
-	handleEnd(e) {
+	endPosition(e) {
 		e.preventDefault();
 		this.painting = false;
 	}
 
-	handleMove(e) {
+	mouseMove(e) {
+		if (this.painting === true) {
+			this.ctx.lineTo(e.offsetX, e.offsetY);
+			this.ctx.stroke();
+			this.signature = true;			
+		};
+	}
+
+	touchMove(e) {
 		e.preventDefault();
-		if (!this.painting) return;
-		let touch = e.touches;
-		console.log("touch");
-		console.log("ctx.MoveTo(" + touch[0].clientX + ", " + touch[0].clientY + ");");
-		console.log("ctx.lineTo(" + touch[0].clientX + ", " + touch[0].clientY + ");");
-		//this.ctx.moveTo(touch[0].clientX,touch[0].clientY);
-		this.ctx.lineTo(touch[0].clientX,touch[0].clientY);
-		this.ctx.stroke();
-		this.signature = true;
+		if (this.painting === true) {
+			this.ctx.lineTo(e.touches[0].clientX - canvas.getBoundingClientRect().left, e.touches[0].clientY - canvas.getBoundingClientRect().top);
+			this.ctx.stroke();
+			this.signature = true;
+		}
 	}
 
 	// Efface le canvas

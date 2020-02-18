@@ -68,14 +68,6 @@ h4 {
 	margin: 5px 0px 2px 10px;
 }
 
-.body__text_bold {
-	font-weight: bold;
-}
-
-.body__text_underline {
-	text-decoration: underline dotted;
-}
-
 /* Boutons */
 .button {
 	font-family: 'robotobold', Arial, sans-serif;
@@ -94,6 +86,10 @@ h4 {
 	transition: all .6s ease;
 }
 
+.button__icon {
+	margin-right: 10px;
+}
+
 .button:hover {
 	background-color: #5CADD3;
 	color: #ffffff;
@@ -103,11 +99,6 @@ h4 {
 .separator__icon {
 	margin: 0px;
 	color: #468CAD;
-}
-
-/* Icône */
-.fa-check, .fa-trash-alt {
-	margin-right: 10px;
 }
 
 /* Input */
@@ -133,12 +124,13 @@ h4 {
 Header
 ========================================================================== */
 .header {
-	background-color: white;
 	position: fixed;
 	top: 0;
 	left: 0;
+	right: 0;
 	width: 100%;
 	height: 92px;
+	background-color: white;	
 	z-index: 9999;
 }
 
@@ -148,11 +140,18 @@ Header
 	justify-content: space-between;
 	width: 70%;
 	margin: auto;
-	padding: 15px 0px;
 }
 
-.logo {
+.header__logo {
 	z-index: 9998;
+}
+
+.header__logo_text {
+	color: #468CAD;
+	font-size: 3.5em;
+	font-family: 'robotomedium', Arial, sans-serif;
+	font-weight: bold;
+	font-style: italic;
 }
 
 /* Menu de navigation principal */
@@ -161,23 +160,33 @@ Header
 	list-style: none;
 }
 
+.menu__nav {
+	margin-top: 12px;
+}
+
 .menu__link {
-	color: #777777;
+	color: #272727;
+	background-color: #ffffff;
 	font-size: 1em;
 	font-family: 'robotomedium', Arial, sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;	
 	text-decoration: none;
-	margin-right: 25px;
-	padding-top: 31px;
+	border: none;
+	border-radius: .25rem;
+	margin: 10px 5px;
+	padding: 12px 24px;
+	transition: all .6s ease;	
 }
 
 .menu__link:hover {
-	color: #636363;
-	border-top: 4px solid #5CADD3;
+	color: #ffffff;
+	background-color: #468CAD;
 }
 
 .menu__link.active {
-	color: #636363;
-	border-top: 4px solid #5CADD3;
+	color: #ffffff;
+	background-color: #468CAD;
 }
 
 .menu__input {
@@ -235,17 +244,18 @@ Slideshow
 	position: absolute;
 	width: 30px;
 	height: 60px;	
-	background: #468CAD;
+	background: rgba( 255, 255, 255, 0.2);
 	border-top-right-radius: 30px;
 	border-bottom-right-radius: 30px;
 	top: 50%;
 	left: 0px;
 	transform: translate(0, -50%);
+	transition: all .6s ease;	
 	cursor: pointer;
 }
 
 .slider__button_left:hover {
-	background: #5CADD3;
+	background: #468CAD;
 }
 
 .fa-chevron-left {
@@ -260,17 +270,18 @@ Slideshow
 	position: absolute;
 	width: 30px;
 	height: 60px;	
-	background: rgba(0, 0, 0, 0.2);
+	background: rgba( 255, 255, 255, 0.2);
 	border-top-left-radius: 30px; 
 	border-bottom-left-radius: 30px;
 	top: 50%;
 	right: 0px;
 	transform: translate(0, -50%);
+	transition: all .6s ease;	
 	cursor: pointer;
 }
 
 .slider__button_right:hover {
-	background: rgba(0, 0, 0, 0.8);
+	background: #468CAD;
 }
 
 .fa-chevron-right {
@@ -287,19 +298,25 @@ Slideshow
 	width: 100%;
 	bottom: 0;
 	height: 10%;
-	background-color: rgba(0, 0, 0, 0.8);
 }
 
 .slider__button_play {
 	position: absolute;
 	display: none;
-	bottom: 30%;
+	bottom: 0;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	border: none;
 	color: #ffffff;
-	background: transparent;
+	background: rgba( 255, 255, 255, 0.2);
+	border-radius: .25rem;
+	padding: 12px 24px;
+	transition: all .6s ease;
 	cursor: pointer;
+}
+
+.slider__button_play:hover {
+	background-color: #468CAD;
 }
 
 .slider__button_play.active {
@@ -309,13 +326,20 @@ Slideshow
 .slider__button_pause {
 	position: absolute;
 	display: none;
-	bottom: 30%;
+	bottom: 0;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	border: none;
 	color: #ffffff;
-	background: transparent;
+	background: rgba( 255, 255, 255, 0.2);
+	border-radius: .25rem;
+	padding: 12px 24px;
+	transition: all .6s ease;	
 	cursor: pointer;
+}
+
+.slider__button_pause:hover {
+	background-color: #468CAD;
 }
 
 .slider__button_pause.active {
@@ -326,15 +350,12 @@ Slideshow
 Carte des stations
 ========================================================================== */
 .stations {
-	width: 90%;
-	height: 800px;
-	padding-bottom: 50px;
+	width: 70%;
+	padding-bottom: 92px;
 }
 
 .stations__title {
 	text-align: center;
-	width: 50%;
-	margin: auto;
 }
 
 .stations__subtitle {
@@ -344,7 +365,7 @@ Carte des stations
 .stations__mainContent {
 	position: relative;
 	width: 100%;
-	height: auto;
+	height: 600px;
 }
 
 .stations__map {
@@ -436,7 +457,13 @@ Ma réservation
 .reservation {
 	text-align: center;
 	background-color: #F5F5F5;
+	min-height: 300px;
 	padding-bottom: 92px;
+}
+
+.reservation__mainContent {
+	width: 80%;
+	margin: auto;
 }
 
 .reservation__timer {
@@ -451,11 +478,15 @@ Ma réservation
 Responsive design
 ========================================================================== */
 @media (max-width: 767px) {
-	.logo {
+	.header__logo {
 		position: fixed;
 		top: 15px;
 		left: 5%;
 		z-index: 9998;
+	}
+
+	.header__logo_text {
+		font-size: 3em;
 	}
 
 	.menu__input {
@@ -466,8 +497,8 @@ Responsive design
 	.menu__label {
 		display: block;
 		position: fixed;
-		top: 31px;
-		right: 5%;
+		top: 38px;
+		right: 10%;
 		height: 30px;
 		width: 30px; 
 		z-index: 9997;
@@ -521,29 +552,18 @@ Responsive design
 	}
 
 	.menu__item {
-		margin: 10px 0px;
+		margin: 20px 0px;
 		opacity: 0;
 		transition: 0.5s;
 		transition-delay: 0s;
 	}
 
 	.menu__link {
-		margin: 0px;
-		padding: 0px;
-	}
-
-	.menu__link:hover {
-		color: #636363;
-		border-top: none;
-	}
-
-	.menu__link_active {
-		color: #777777;
-		border-top: none;
+		padding: 6px 12px;
 	}
 
 	.menu__input:checked ~ .menu__nav { 
-		height: 40%;
+		height: 70%;
 		transition-delay: 0s;
 	}
 
@@ -566,82 +586,41 @@ Responsive design
 		top: 50%;
 	}
 
-	.slider__text {
-		position: absolute;
+	.stations {
 		width: 80%;
-		top: 5%;
-		left: 12%;
+		height: inherit;
 	}
 
-	h1 {
-		font-size: 0.8em;
-		text-shadow: 2px 2px 4px #000000;
-		margin-bottom: 4px;
+	h2 {
+		font-size: 2em;
 	}
 
-	.slider__text_white {
-		font-size: 0.6em;
-		text-shadow: 2px 2px 4px #000000;
-		padding: 0;
-		margin: 0;
-	}
-
-	.slider__button {
-		margin-top: 8px;
-		font-size: 0.7em;
-		padding: 5px;
-	}
-
-	.services__title {
+	.stations__map {
 		width: 100%;
+		height: 500px;
 	}
 
-	.services__block {
-		flex-direction: column;
-	}
-
-	.services__image_responsive {
+	.stations__mainContent {
+		position: relative;
 		width: 100%;
 		height: auto;
 	}
 
-	.services__content {
-		flex-direction: column;
-		text-align: center;	
-		padding: 20px 5%;
-		margin-top: 0px;
-	}
-
-	.services__text {
-		text-align: center;
-	}
-
-	.services__icon {
-		margin: 10px auto;
-	}
-
-	.projets__label {
-		padding: 4px 8px;
-	}
-
-	.projets__items {
-		padding: 0;
-	}
-
-	.contact__background {
-		position: absolute;
-		width: 80%;
+	.stations__map {
+		position: inherit;
+		width: 100%;
 		height: 600px;
-		margin: 0 10%;
 	}
 
-	.contact__form {
-		position: relative;
+	.stations__reservation {
+		position: inherit;
+		width: 100%;
 		top: 0;
-		left: 0;
-		width: 90%;
-		transform: none;
-		margin: 30px auto;
+		right: 0;
+		padding: 0px;
+		margin: 30px 0;			
+		background-color: #ffffff;
+		box-shadow: inherit;
 	}
 }
 
@@ -761,21 +740,8 @@ Responsive design
 		top: 50%;
 	}
 
-	.slider__text {
-		position: absolute;
-		width: 50%;
-		top: 5%;
-		left: 5%;
-	}
-
 	h1 {
 		font-size: 2.0em;
-	}
-
-	.slider__text_white {
-		font-size: 0.9em;
-		padding: 0;
-		margin: 0;
 	}
 
 	.services__title {
@@ -834,40 +800,7 @@ Responsive design
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-	.slider__text {
-		position: absolute;
-		width: 50%;
-		top: 10%;
-		left: 5%;
-	}
 
-	.services__title {
-		width: 60%;
-	}
 
-	.services__block {
-		flex-direction: column;
-	}
 
-	.services__image_responsive {
-		width: 100%;
-		height: auto;
-	}
-
-	.services__content {
-		flex-direction: column;
-		text-align: center;	
-		padding: 20px 5%;
-		margin-top: 0px;
-	}
-
-	.services__text {
-		text-align: center;
-		width: 70%;
-		margin: auto;
-	}
-
-	.services__icon {
-		margin: 10px auto;
-	}
 }
