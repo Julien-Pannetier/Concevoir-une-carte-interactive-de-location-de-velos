@@ -40,9 +40,10 @@ p {
 }
 
 h1 {
-	font-family: 'robotobold', Arial, sans-serif;
-	font-size: 2.2em;
-	color: #ffffff;
+	font-family: 'robotomedium', Arial, sans-serif;
+	font-size: 3em;
+	color: #468CAD;
+	margin-top: 20px;
 	margin-bottom: 20px;
 }
 
@@ -200,6 +201,16 @@ Header
 /* ==========================================================================
 Slideshow
 ========================================================================== */
+.slider__title {
+	text-align: center;	
+	width: 70%;
+	margin: auto;
+}
+
+.slider__subtitle {
+	margin: 10px 0px 50px 0px;
+}
+
 .slider__container {
 	position: relative;
 	width: 70%;
@@ -441,7 +452,11 @@ Ma réservation
 /* ==========================================================================
 Responsive design
 ========================================================================== */
-@media (max-width: 767px) {
+@media (max-width: 767.98px) {
+
+	h1 {
+		font-size: 2em;
+	}
 
 	h2 {
 		font-size: 2em;
@@ -564,7 +579,6 @@ Responsive design
 	}
 
 	.slide__text {
-		top: 10px;
 		height: 25%;
 	}
 
@@ -575,6 +589,14 @@ Responsive design
 	.slider__button {
 		background: inherit;
 		transform: translate(-50%);
+	}
+
+	.slider__chevron:hover {	
+		background: inherit;
+	}
+
+	.slider__button:hover {
+		background: inherit;
 	}
 
 	.stations {
@@ -611,7 +633,7 @@ Responsive design
 	}
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 991.98px) {
 
 	.menu__input {
 		opacity: 0;
@@ -725,7 +747,6 @@ Responsive design
 	}
 
 	.slide__text {
-		top: 10px;
 		height: 15%;
 	}
 
@@ -763,7 +784,7 @@ Responsive design
 	}
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 992px) and (max-width: 1199.98px) {
 
 	.header__container {
 		width: 90%;
