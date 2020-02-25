@@ -4,20 +4,18 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<title>WebAgency, agence web à Paris</title>
-		<meta name="description" content="Agence web à Paris, nous accompagnons nos clients dans la création de site internet : étude, conception, design, développement, référencement SEO et suivi." />
+		<title>CityCycle - Le vélo en libre-service</title>
+		<meta name="description" content="Le principe est simple : louer un vélo 7j/7 à une station automatique, se déplacer, et le reposer à la station la plus proche de son point d'arrivée." />
 
 		<!-- Twitter Card data -->
 		<meta name="twitter:card" content="summary">
-		<!-- Twitter Card data -->
 
 		<!-- Open Graph data -->
-		<meta property="og:title" content="WebAgency, agence web à Paris" />
+		<meta property="og:title" content="CityCycle - Le vélo en libre-service" />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://projetwebagency.netlify.com/" />
-		<meta property="og:image" content="https://projetwebagency.netlify.com/images/main-feature.png" />
-		<meta property="og:description" content="Agence web à Paris, nous accompagnons nos clients dans la création de site internet : étude, conception, design, développement, référencement SEO et suivi." />
-		<!-- End Open Graph data -->
+		<meta property="og:url" content="https://projetcitycycle.netlify.com/" />
+		<meta property="og:image" content="https://projetcitycycle.netlify.com/images/slider/01.jpg" />
+		<meta property="og:description" content="Le principe est simple : louer un vélo 7j/7 à une station automatique, se déplacer, et le reposer à la station la plus proche de son point d'arrivée." />
 
 		<!-- Leaflet -->
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
@@ -27,6 +25,7 @@
 		<!-- Fontawesome -->
 		<script src="https://kit.fontawesome.com/059df0aa38.js" crossorigin="anonymous"></script>
 		<link href="./fonts/fontawesome/css/all.css" rel="stylesheet" />
+		
 		<!-- Mon fichier CSS -->
 		<link rel="stylesheet" href="./style.css" />
 
@@ -71,43 +70,43 @@
 				<div class="slider__slide">
 					<img class="slide__image" src="./images/slider/02.jpg" alt="" />
 					<div class="slide__text">
-						<p class="slide__text_style">Étape 1</p>
+						<p class="slide__text_style">1 - Choisissez une station</p>
 					</div>
 				</div>
 
 				<div class="slider__slide">
 					<img class="slide__image" src="./images/slider/03.jpg" alt="" />
 					<div class="slide__text">
-						<p class="slide__text_style">Étape 2</p>
+						<p class="slide__text_style">2 - Indiquez votre nom et prénom puis cliquez sur "RÉSERVER"</p>
 					</div>
 				</div>
 
 				<div class="slider__slide">
 					<img class="slide__image" src="./images/slider/04.jpg" alt="" />
 					<div class="slide__text">
-						<p class="slide__text_style">Étape 3</p>
+						<p class="slide__text_style">3 - Apposez votre signature puis cliquez sur "VALIDER"</p>
 					</div>
 				</div>
 
 				<div class="slider__slide">
 					<img class="slide__image" src="./images/slider/05.jpg" alt="" />
 					<div class="slide__text">
-						<p class="slide__text_style">Étape 4</p>
+						<p class="slide__text_style">4 - Profitez !</p>
 					</div>
 				</div>
 
-				<!-- Boutons précédent, suivant, lecture et pause -->
-				<div class="slider__button_left">
+				<!-- Chevrons précédent et suivant, Boutons lecture et pause -->
+				<div class="slider__chevron slider__chevron_left">
 					<a><i class="fas fa-chevron-left"></i></a>
 				</div>
-				<div class="slider__button_right">
+				<div class="slider__chevron slider__chevron_right">
 					<a><i class="fas fa-chevron-right"></i></a>
 				</div>
-				<div class="slider__button_playPause">
-					<button class="slider__button_play">
+				<div class="slider__button_container">
+					<button class="slider__button slider__button_play">
 						<i class="fas fa-play"></i>
 					</button>
-					<button class="slider__button_pause active">
+					<button class="slider__button slider__button_pause active">
 						<i class="fas fa-pause"></i>
 					</button>
 				</div>
@@ -162,15 +161,17 @@
 						</p>
 					</form>
 					<div id="stations__canvas" class="stations__canvas">
-						<canvas id="canvas">
+						<canvas id="canvas" class="canvas">
 							<p>Votre navigateur ne semble pas prendre en charge cette fonctionnalité.</p>
 						</canvas>
-						<button type="button" class="canvas__button_validate button">
-							<i class="fas fa-check button__icon"></i> Valider
-						</button>
-						<button type="button" class="canvas__button_clear button">
-							<i class="fas fa-trash-alt button__icon"></i> Effacer
-						</button>
+						<div canvas__button_container>
+							<button type="button" class="canvas__button_validate button">
+								<i class="fas fa-check button__icon"></i> Valider
+							</button>
+							<button type="button" class="canvas__button_clear button">
+								<i class="fas fa-trash-alt button__icon"></i> Effacer
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -191,8 +192,6 @@
 				</button>
 			</div>
 		</section>
-
-
 
 		 <!-- Ajout de la librairie Javascript open source Leaflet -->
  		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>

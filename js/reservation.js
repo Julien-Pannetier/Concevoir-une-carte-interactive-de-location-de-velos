@@ -1,7 +1,7 @@
 class Reservation {
 
 	constructor() {
-		this.canvas = new Canvas(document.querySelector("#canvas"), document.querySelector("#canvas").getContext('2d'), 150, 349, "#777777", 4, "round", "round");
+		this.canvas = new Canvas(document.querySelector("#canvas"), document.querySelector("#canvas").getContext('2d'), 150, 280, "#777777", 4, "round", "round");
 
 		this.userLastName = document.getElementById("user__lastName");
 		this.userFirstName = document.getElementById("user__firstName");

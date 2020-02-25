@@ -202,16 +202,12 @@ Slideshow
 ========================================================================== */
 .slider__container {
 	position: relative;
-	width: 1000px;
-	height: 666px;
+	width: 70%;
 	margin: auto;
 }
 
 .slider__slide {
-	position: absolute;
 	display: none;
-	top: 0;
-	left: 0;
 }
 
 .slider__slide.active {
@@ -226,35 +222,44 @@ Slideshow
 .slide__text {
 	position: absolute;
 	width: 100%;
-	top: 0;
+	top: 0;	
+	display: flex;
 	height: 10%;
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(70, 140, 173, 0.8);
 }
 
 .slide__text_style {
-	position: absolute;
 	color: #ffffff;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	width: 80%;
+	margin: auto;
+	text-align: center;
 }
 
 /* Chevrons du slider */
-.slider__button_left {
+.slider__chevron {
 	position: absolute;
 	width: 30px;
 	height: 60px;	
 	background: rgba( 255, 255, 255, 0.2);
-	border-top-right-radius: 30px;
-	border-bottom-right-radius: 30px;
 	top: 50%;
-	left: 0px;
 	transform: translate(0, -50%);
 	transition: all .6s ease;	
 	cursor: pointer;
 }
 
-.slider__button_left:hover {
+.slider__chevron_left {
+	border-top-right-radius: 30px;
+	border-bottom-right-radius: 30px;
+	left: 0px;
+}
+
+.slider__chevron_right {
+	border-top-left-radius: 30px; 
+	border-bottom-left-radius: 30px;
+	right: 0px;
+}
+
+.slider__chevron:hover {
 	background: #468CAD;
 }
 
@@ -266,24 +271,6 @@ Slideshow
 	transform: translate(0, -50%);
 }
 
-.slider__button_right {
-	position: absolute;
-	width: 30px;
-	height: 60px;	
-	background: rgba( 255, 255, 255, 0.2);
-	border-top-left-radius: 30px; 
-	border-bottom-left-radius: 30px;
-	top: 50%;
-	right: 0px;
-	transform: translate(0, -50%);
-	transition: all .6s ease;	
-	cursor: pointer;
-}
-
-.slider__button_right:hover {
-	background: #468CAD;
-}
-
 .fa-chevron-right {
 	position: absolute;
 	color: #ffffff;
@@ -292,15 +279,15 @@ Slideshow
 	transform: translate(0, -50%);
 }
 
-/* Boutons Play Pause */
-.slider__button_playPause {
+/* Boutons lecture et pause du slider */
+.slider__button_container {
 	position: absolute;
 	width: 100%;
 	bottom: 0;
 	height: 10%;
 }
 
-.slider__button_play {
+.slider__button {
 	position: absolute;
 	display: none;
 	bottom: 0;
@@ -315,34 +302,11 @@ Slideshow
 	cursor: pointer;
 }
 
-.slider__button_play:hover {
+.slider__button:hover {
 	background-color: #468CAD;
 }
 
-.slider__button_play.active {
-	display: block;
-}
-
-.slider__button_pause {
-	position: absolute;
-	display: none;
-	bottom: 0;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	border: none;
-	color: #ffffff;
-	background: rgba( 255, 255, 255, 0.2);
-	border-radius: .25rem;
-	padding: 12px 24px;
-	transition: all .6s ease;	
-	cursor: pointer;
-}
-
-.slider__button_pause:hover {
-	background-color: #468CAD;
-}
-
-.slider__button_pause.active {
+.slider__button.active {
 	display: block;
 }
 
@@ -389,21 +353,6 @@ Carte des stations
 	z-index: 9995;
 }
 
-.stations__button_close {
-	position: absolute;
-	font-size: 1.2em;
-	top: 10px;
-	right: 10px;
-	border: none;
-	color: #468CAD;
-	background-color: rgba(255, 255, 255, 0.2);
-	cursor: pointer;
-}
-
-.stations__button_close:hover {
-	color: #5CADD3;
-}
-
 .stations__reservation_title {
 	text-align: center;
 	margin-top: 0px;
@@ -425,15 +374,30 @@ Carte des stations
 	margin-bottom: 10px;
 }
 
+.stations__button_close {
+	position: absolute;
+	font-size: 1.2em;
+	top: 10px;
+	right: 10px;
+	border: none;
+	color: #468CAD;
+	background-color: rgba(255, 255, 255, 0.2);
+	cursor: pointer;
+}
+
+.stations__button_close:hover {
+	color: #5CADD3;
+}
+
 .reservation__button {
 	width: 100%;
 }
 
-#stations__form {
+.stations__form {
 	display: none;
 }
 
-#stations__canvas {
+.stations__canvas {
 	text-align: center;
 }
 
@@ -445,7 +409,7 @@ Carte des stations
 	margin-left: 10px; 
 }
 
-#canvas {
+.canvas {
 	border: 1px solid #777777;
 	border-radius: 2px;
 	background-color: #fff;
@@ -462,7 +426,7 @@ Ma réservation
 }
 
 .reservation__mainContent {
-	width: 80%;
+	width: 70%;
 	margin: auto;
 }
 
@@ -478,6 +442,15 @@ Ma réservation
 Responsive design
 ========================================================================== */
 @media (max-width: 767px) {
+
+	h2 {
+		font-size: 2em;
+	}
+
+	.button {
+		font-size: 0.8em;
+	}
+
 	.header__logo {
 		position: fixed;
 		top: 15px;
@@ -563,7 +536,7 @@ Responsive design
 	}
 
 	.menu__input:checked ~ .menu__nav { 
-		height: 70%;
+		height: 50%;
 		transition-delay: 0s;
 	}
 
@@ -586,16 +559,31 @@ Responsive design
 		top: 50%;
 	}
 
+	.slider__container {
+		width: 100%;
+	}
+
+	.slide__text {
+		top: 10px;
+		height: 25%;
+	}
+
+	.slider__chevron {	
+		background: inherit;
+	}
+
+	.slider__button {
+		background: inherit;
+		transform: translate(-50%);
+	}
+
 	.stations {
 		width: 80%;
 		height: inherit;
 	}
 
-	h2 {
-		font-size: 2em;
-	}
-
 	.stations__map {
+		position: inherit;		
 		width: 100%;
 		height: 500px;
 	}
@@ -604,12 +592,6 @@ Responsive design
 		position: relative;
 		width: 100%;
 		height: auto;
-	}
-
-	.stations__map {
-		position: inherit;
-		width: 100%;
-		height: 600px;
 	}
 
 	.stations__reservation {
@@ -622,15 +604,14 @@ Responsive design
 		background-color: #ffffff;
 		box-shadow: inherit;
 	}
+
+	.stations__button_close {
+		top: -5px;
+		right: -5px;
+	}
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-	.logo {
-		position: fixed;
-		top: 15px;
-		left: 5%;
-		z-index: 9998;
-	}
 
 	.menu__input {
 		opacity: 0;
@@ -695,15 +676,14 @@ Responsive design
 	}
 
 	.menu__item {
-		margin: 10px 0px;
+		margin: 20px 0px;
 		opacity: 0;
 		transition: 0.5s;
 		transition-delay: 0s;
 	}
 
 	.menu__link {
-		margin: 0px;
-		padding: 0px;
+		padding: 6px 12px;
 	}
 
 	.menu__link:hover {
@@ -740,67 +720,73 @@ Responsive design
 		top: 50%;
 	}
 
-	h1 {
-		font-size: 2.0em;
+	.slider__container {
+		width: 80%;
 	}
 
-	.services__title {
-		width: 60%;
+	.slide__text {
+		top: 10px;
+		height: 15%;
 	}
 
-	.services__block {
-		flex-direction: column;
+	.stations {
+		width: 80%;
+		height: inherit;
 	}
 
-	.services__image_responsive {
+	.stations__map {
+		position: inherit;
+		width: 100%;
+		height: 500px;
+	}
+
+	.stations__mainContent {
+		position: relative;
 		width: 100%;
 		height: auto;
 	}
 
-	.services__content {
-		flex-direction: column;
-		text-align: center;	
-		padding: 20px 5%;
-		margin-top: 0px;
-	}
-
-	.services__text {
-		text-align: center;
-		width: 75%;
-		margin: auto;
-	}
-
-	.services__icon {
-		margin: 10px auto;
-	}
-
-	.projets__label {
-  		padding: 4px 8px;
-	}
-
-	.projets__items {
-		padding: 0;
-	}
-
-	.contact__background {
-		position: absolute;
-		width: 80%;
-		height: 600px;
-		margin: 0 10%;
-	}
-
-	.contact__form {
-		position: relative;
+	.stations__reservation {
+		position: inherit;
+		width: 100%;
 		top: 0;
-		left: 0;
-		width: 50%;
-		transform: none;
-		margin: 30px auto;
+		right: 0;
+		padding: 0px;
+		margin: 30px 0;			
+		background-color: #ffffff;
+		box-shadow: inherit;
+	}
+
+	.stations__button_close {
+		top: -5px;
+		right: -5px;
 	}
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
 
+	.header__container {
+		width: 90%;
+	}
 
+	.header__logo_text {
+		font-size: 3.5em;
+	}
 
+	.menu__link {
+		padding: 6px 12px;
+	}
+
+	.slider__container {
+		width: 80%;
+	}
+
+	.slide__text {
+		height: 15%;
+	}
+
+	.stations {
+		width: 80%;
+		height: inherit;
+	}
 }
