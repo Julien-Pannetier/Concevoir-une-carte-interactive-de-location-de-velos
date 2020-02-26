@@ -52,7 +52,7 @@ class Reservation {
 			this.setTimer();
 			$('html, body').animate({
 				scrollTop: $("#reservation").offset().top
-			}, 2000);
+			}, 1000);
 		} else {
 			alert("Veuillez apposer votre signature.");
 		}

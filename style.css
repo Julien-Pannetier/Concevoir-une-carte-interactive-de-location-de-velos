@@ -115,6 +115,17 @@ h4 {
 	box-sizing: border-box;
 }
 
+.visually__hidden {
+	position: absolute;
+	border: 0;
+	height: 1px;
+	margin: -1px;
+	width: 1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+}
+
 /* Section */
 .custom__section {
 	margin: 0 auto;
@@ -202,7 +213,7 @@ Header
 Slideshow
 ========================================================================== */
 .slider__title {
-	text-align: center;	
+	text-align: center;
 	width: 70%;
 	margin: auto;
 }
@@ -493,6 +504,14 @@ Responsive design
 		cursor: pointer;
 	}
 
+	.visually__hidden {
+		border: inherit;
+		margin: inherit;
+		padding: inherit;
+		overflow: inherit;
+		clip: inherit;
+	}
+
 	.bars {
 		position: absolute;
 		display: block;
@@ -649,6 +668,14 @@ Responsive design
 		width: 30px; 
 		z-index: 9997;
 		cursor: pointer;
+	}
+
+	.visually__hidden {
+		border: inherit;
+		margin: inherit;
+		padding: inherit;
+		overflow: inherit;
+		clip: inherit;
 	}
 
 	.bars {

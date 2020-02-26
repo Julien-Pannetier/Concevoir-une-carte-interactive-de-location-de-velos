@@ -41,7 +41,7 @@
 				</div>
 
 				<input class="menu__input" id="menu_responsive" type="checkbox" name="button" />
-				<label class="menu__label" for="menu_responsive">
+				<label class="menu__label visually__hidden" for="menu_responsive">
 					<span class="bars bar-1"></span>
 					<span class="bars bar-2"></span>
 					<span class="bars bar-3"></span>
@@ -70,35 +70,35 @@
 			</div>
 			<div class="slider__container">
 				<div class="slider__slide active">
-					<img class="slide__image" src="./images/slider/01.jpg" alt="" />
+					<img class="slide__image" src="./images/slider/01.jpg" alt="Une rangée de vélos en libre-service." />
 					<div class="slide__text">
 						<p class="slide__text_style">Principes de fonctionnement</p>
 					</div>
 				</div>
 
 				<div class="slider__slide">
-					<img class="slide__image" src="./images/slider/02.jpg" alt="" />
+					<img class="slide__image" src="./images/slider/02.jpg" alt="Un vélo en libre-service." />
 					<div class="slide__text">
 						<p class="slide__text_style">1 - Choisissez une station</p>
 					</div>
 				</div>
 
 				<div class="slider__slide">
-					<img class="slide__image" src="./images/slider/03.jpg" alt="" />
+					<img class="slide__image" src="./images/slider/03.jpg" alt="Des vélos en libre-service." />
 					<div class="slide__text">
 						<p class="slide__text_style">2 - Indiquez votre nom et prénom puis cliquez sur "RÉSERVER"</p>
 					</div>
 				</div>
 
 				<div class="slider__slide">
-					<img class="slide__image" src="./images/slider/04.jpg" alt="" />
+					<img class="slide__image" src="./images/slider/04.jpg" alt="Deux femmes réservent un vélo à partir de leur téléphone portable." />
 					<div class="slide__text">
 						<p class="slide__text_style">3 - Apposez votre signature puis cliquez sur "VALIDER"</p>
 					</div>
 				</div>
 
 				<div class="slider__slide">
-					<img class="slide__image" src="./images/slider/05.jpg" alt="" />
+					<img class="slide__image" src="./images/slider/05.jpg" alt="Deux hommes récupèrent un vélo à une station." />
 					<div class="slide__text">
 						<p class="slide__text_style">4 - Profitez !</p>
 					</div>
@@ -162,8 +162,12 @@
 
 					<form id="stations__form" class="stations__form">
 						<p>
-							<input id="user__lastName" class="input" type="text" name="nom" placeholder="Nom" required />
-							<input id="user__firstName" class="input" type="text" name="prenom" placeholder="Prénom" required />
+							<label for="user__lastName">
+								<input id="user__lastName" class="input" type="text" name="nom" placeholder="Nom" required />
+							</label>
+							<label for="user__firstName">
+								<input id="user__firstName" class="input" type="text" name="prenom" placeholder="Prénom" required />
+							</label>
 							<button type="button" class="reservation__button button" >
 								<i class="fas fa-check button__icon"></i> Réserver
 							</button>
