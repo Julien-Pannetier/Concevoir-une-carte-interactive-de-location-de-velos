@@ -115,6 +115,7 @@ h4 {
 	box-sizing: border-box;
 }
 
+/* Label */
 .visually__hidden {
 	position: absolute;
 	border: 0;
@@ -150,7 +151,7 @@ Header
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 70%;
+	width: 80%;
 	margin: auto;
 }
 
@@ -504,14 +505,6 @@ Responsive design
 		cursor: pointer;
 	}
 
-	.visually__hidden {
-		border: inherit;
-		margin: inherit;
-		padding: inherit;
-		overflow: inherit;
-		clip: inherit;
-	}
-
 	.bars {
 		position: absolute;
 		display: block;
@@ -668,14 +661,6 @@ Responsive design
 		width: 30px; 
 		z-index: 9997;
 		cursor: pointer;
-	}
-
-	.visually__hidden {
-		border: inherit;
-		margin: inherit;
-		padding: inherit;
-		overflow: inherit;
-		clip: inherit;
 	}
 
 	.bars {

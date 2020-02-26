@@ -40,8 +40,8 @@
 					<p class="header__logo_text">CityCycle</p>
 				</div>
 
-				<input class="menu__input" id="menu_responsive" type="checkbox" name="button" />
-				<label class="menu__label visually__hidden" for="menu_responsive">
+				<input class="menu__input" id="menu_responsive" type="checkbox" name="button" title="Menu" />
+				<label class="menu__label" for="menu_responsive" >
 					<span class="bars bar-1"></span>
 					<span class="bars bar-2"></span>
 					<span class="bars bar-3"></span>
@@ -162,12 +162,10 @@
 
 					<form id="stations__form" class="stations__form">
 						<p>
-							<label for="user__lastName">
-								<input id="user__lastName" class="input" type="text" name="nom" placeholder="Nom" required />
-							</label>
-							<label for="user__firstName">
-								<input id="user__firstName" class="input" type="text" name="prenom" placeholder="Prénom" required />
-							</label>
+							<label class="visually__hidden" for="user__lastName">Nom</label>
+							<input id="user__lastName" class="input" type="text" name="nom" placeholder="Nom" required />
+							<label class="visually__hidden" for="user__firstName">Prénom</label>
+							<input id="user__firstName" class="input" type="text" name="prenom" placeholder="Prénom" required />
 							<button type="button" class="reservation__button button" >
 								<i class="fas fa-check button__icon"></i> Réserver
 							</button>
