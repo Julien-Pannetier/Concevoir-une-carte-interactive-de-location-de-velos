@@ -450,11 +450,11 @@ Ma réservation
 
 .reservation__mainContent {
 	width: 70%;
-	margin: auto;
+	margin: 20px auto;
 }
 
-.reservation__timer {
-	margin: 20px 0px;
+.reservation__countdown {
+	margin-bottom: 20px; 
 }
 
 .reservation__button_cancel {

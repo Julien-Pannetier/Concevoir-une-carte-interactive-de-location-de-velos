@@ -2,12 +2,13 @@ class Reservation {
 
 	constructor() {
 		this.canvas = new Canvas(document.querySelector("#canvas"), document.querySelector("#canvas").getContext('2d'), 150, 280, "#777777", 4, "round", "round");
-
+		
 		this.userLastName = document.getElementById("user__lastName");
 		this.userFirstName = document.getElementById("user__firstName");
 		this.stationName = document.getElementById("stations__name");
 		this.stationAddress = document.getElementById("stations__address");
 		this.timerElt = document.getElementById('timer');
+		this.observer = null;
 
 		$('.reservation__button').click(this.startReservation.bind(this));
 		$('.stations__button_close').click(this.closeReservationBox.bind(this));
@@ -23,6 +24,7 @@ class Reservation {
 		this.userFirstName.value = localStorage.getItem('userFirstName');
 		// Vérification de l'existence d'une réservation en cours
 		if (JSON.parse(sessionStorage.getItem('date')) > 0 ) {
+			this.reservationDisplay();
 			this.setTimer();
 		}
 	}
@@ -43,12 +45,16 @@ class Reservation {
 
 	completeReservation() {
 		if (this.canvas.signature === true) {
-			clearInterval(this.timer);
+			if (typeof this.decompte !== 'undefined') {
+  				// Si decompte est défini, on annule le compte à rebours
+				this.decompte.clearCountdown();
+			}
 			sessionStorage.clear();
 			sessionStorage.setItem('date', new Date().getTime());
 			sessionStorage.setItem('stationName', this.stationName.innerHTML);
 			sessionStorage.setItem('stationAddress', this.stationAddress.innerHTML);
 			this.closeReservationBox();
+			this.reservationDisplay();
 			this.setTimer();
 			$('html, body').animate({
 				scrollTop: $("#reservation").offset().top
@@ -64,44 +70,53 @@ class Reservation {
 		this.canvas.clear();
 	}
 
+	// Affichage des informations de la réservation
+	reservationDisplay() {
+		this.lastName = localStorage.getItem('userLastName');
+		this.firstName = localStorage.getItem('userFirstName');
+		this.station = sessionStorage.getItem('stationName');
+		this.address = sessionStorage.getItem('stationAddress');
+		this.timerElt.innerHTML = ' '+this.lastName+' '+this.firstName+', un vélo vous est réservé à la station '+this.station+' située '+this.address+'.';
+		$('.reservation__button_cancel').show();
+	}
+
 	setTimer() {
 		const self = this;
-		this.timer = setInterval(function() {
-			// Récupération de la date actuelle
-			this.now = new Date().getTime();
-			// Récupération de la date de la réservation dans session storage   
-			this.reservationDate = JSON.parse(sessionStorage.getItem('date'));
-			// Comparaison des deux dates et création du décompte
-			this.secondes = ((this.reservationDate + 1200000) - this.now)/1000;
-			this.minutes = Math.floor(this.secondes / 60);
-			this.secondes -= this.minutes * 60;
-			this.secondes = Math.floor(this.secondes);
-			// Affichage du décompte
-			this.lastName = localStorage.getItem('userLastName');
-			this.firstName = localStorage.getItem('userFirstName');
-			this.station = sessionStorage.getItem('stationName');
-			this.address = sessionStorage.getItem('stationAddress');
-			self.timerElt.innerHTML = ' '+this.lastName+' '+this.firstName+', un vélo vous est réservé à la station '+this.station+' située '+this.address+ '.<br>Cette réservation expire dans '+this.minutes+' minute'+(this.minutes>1?'s':'')+' et '+this.secondes+' seconde'+(this.secondes>1?'s':'')+'.';
-			$('.reservation__button_cancel').show();	
-			if (this.minutes === 0 && this.secondes === 0) {
-				setTimeout(function() {
-					self.timerElt.innerHTML = "Votre réservation vient d'expirer.";
-					$('.reservation__button_cancel').hide();
-					clearInterval(self.timer);
-					sessionStorage.clear();
+		this.decompte = new Decompte(document.getElementById("countdown"), JSON.parse(sessionStorage.getItem('date')), 1200000);
+		this.decompte.countdown();
+		// Selectionne le noeud dont les mutations seront observées
+		let targetNode = document.getElementById("countdown");
+		// Options de l'observateur (quelles sont les mutations à observer)
+		let config = { childList: true };
+		// Fonction callback à éxécuter quand une mutation est observée
+		let callback = function(mutations) {
+			for(let mutation of mutations) {
+				if ($("#countdown").text() === "Temps restant : 00 minute 00 seconde.") {
 					setTimeout(function() {
-						self.timerElt.innerHTML = "Aucune réservation en cours.";
-					}, 5000);
-				}, 1000);
-			};
-		}, 1000);
+						self.timerElt.innerHTML = "Votre réservation vient d'expirer.";
+						self.clearReservationInformation();
+					}, 1000)
+				}
+			}
+		};
+		// Créé une instance de l'observateur lié à la fonction de callback
+		this.observer = new MutationObserver(callback);
+		// Commence à observer le noeud cible pour les mutations précédemment configurées
+		this.observer.observe(targetNode, config);
 	}
 
 	cancelReservation() {
+		this.timerElt.innerHTML = "Votre réservation a bien été annulée.";
+		// Arrête l'observation
+		this.observer.disconnect();
+		this.clearReservationInformation();
+	}
+
+	clearReservationInformation() {
 		const self = this;
-		this.timerElt.innerHTML = "Votre réservation a bien été annulée.";    
+		this.decompte.timerElt.innerHTML = "";
 		$('.reservation__button_cancel').hide();
-		clearInterval(this.timer);
+		this.decompte.clearCountdown();
 		sessionStorage.clear();
 		setTimeout(function() {
 			self.timerElt.innerHTML = "Aucune réservation en cours.";
